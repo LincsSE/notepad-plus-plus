@@ -1786,16 +1786,16 @@ INT_PTR CALLBACK LangMenuDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lP
 				//
 				// Tab setting
 				//
-				case IDC_TABSIZEVAL_STATIC:
+				case IDC_TABSIZEVAL_STATIC: //
 				{
 					ValueDlg tabSizeDlg;
 					tabSizeDlg.init(_hInst, _hParent, nppGUI._tabSize, TEXT("Tab Size : "));
 					POINT p;
 					::GetCursorPos(&p);
-					int size = tabSizeDlg.doDialog(p);
+					int size = tabSizeDlg.doDialog(p); //This line defines and fetches the tab size value.
 
 					//Tab size 0 removal
-					if (size <= 0) return FALSE;
+					if (size <= 0) return FALSE; // Returns the error if you choose a tab size lower than 0
 
 					::SetDlgItemInt(_hSelf, IDC_TABSIZEVAL_STATIC, size, FALSE);
 					::SetDlgItemInt(_hSelf, IDC_TABSIZEVAL_DISABLE_STATIC, size, FALSE);
