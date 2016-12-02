@@ -45,7 +45,7 @@ bool TabBarPlus::_isDbClk2Close = false;
 bool TabBarPlus::_isCtrlVertical = false;
 bool TabBarPlus::_isCtrlMultiLine = false;
 
-COLORREF TabBarPlus::_activeTextColour = ::GetSysColor(COLOR_BTNTEXT);
+COLORREF TabBarPlus::_activeTextColour = ::GetSysColor(COLOR_BTNTEXT); // This section is responsible for determining colours used in tab display
 COLORREF TabBarPlus::_activeTopBarFocusedColour = RGB(250, 170, 60);
 COLORREF TabBarPlus::_activeTopBarUnfocusedColour = RGB(250, 210, 150);
 COLORREF TabBarPlus::_inactiveTextColour = grey;
@@ -373,7 +373,7 @@ void TabBarPlus::doOwnerDrawTab()
 }
 
 
-void TabBarPlus::setColour(COLORREF colour2Set, tabColourIndex i)
+void TabBarPlus::setColour(COLORREF colour2Set, tabColourIndex i) // Potential area for setting tab/tab text colour
 {
 	switch (i)
 	{
