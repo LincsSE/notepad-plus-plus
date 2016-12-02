@@ -104,7 +104,7 @@ void ToolBar::initTheme(TiXmlDocument *toolIconsDocRoot)
 	}
 }
 
-bool ToolBar::init( HINSTANCE hInst, HWND hPere, toolBarStatusType type, 
+bool ToolBar::init( HINSTANCE hInst, HWND hPere, toolBarStatusType type, // Toolbar constructor for creating tab colour chooser
 					ToolBarButtonUnit *buttonUnitArray, int arraySize)
 {
 	Window::init(hInst, hPere);
