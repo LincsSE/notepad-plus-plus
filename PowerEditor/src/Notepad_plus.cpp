@@ -2297,6 +2297,7 @@ void Notepad_plus::setUniModeText()
 	_statusBar.setText(uniModeTextString.c_str(), STATUSBAR_UNICODE_TYPE);
 }
 
+//Responsible for deciding the style of the text
 
 void Notepad_plus::addHotSpot()
 {
@@ -2327,6 +2328,14 @@ void Notepad_plus::addHotSpot()
 	// must have special processing here, all other lexers are fine with INDIC1_MASK (7th bit)		
 
 	LangType type = _pEditView->getCurrentBuffer()->getLangType();
+
+
+	if (type == L_TEXT) // Dictates how the plain text language responds.
+	{
+		_pEditView->execute(SCI_STARTSTYLING, startPos, endPos); //Defines the start and end position of the string to style.
+
+		_pEditView->execute(SCI_SETSTYLING, endPos - startPos, static_cast<unsigned char>(STYLE_DEFAULT)); // Changes style of text featured within the hotspot (split URL) to default.
+	}
 
 	if (type == L_HTML || type == L_PHP || type == L_ASP || type == L_JSP)
 		mask = INDIC2_MASK;
