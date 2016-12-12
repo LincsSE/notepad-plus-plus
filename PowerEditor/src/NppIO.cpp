@@ -1008,28 +1008,6 @@ bool Notepad_plus::fileCloseAllSaved(bool doDeleteBackup)
 	return true;
 }
 
-/*bool Notepad_plus::fileCloseAllSaved()
-{
-	for (size_t i = 0; i < _mainDocTab.nbItem(); ++i)
-	{
-		
-		BufferID id = _mainDocTab.getBufferByIndex(i);
-		Buffer * buf = MainFileManager->getBufferByID(id);
-		if (buf->isUntitled() && buf->docLength() == 0)
-		{
-			// Do nothing
-		}
-
-		else if (!buf->isDirty())
-		{
-			bool isSnapshotMode = NppParameters::getInstance()->getNppGUI().isSnapshotMode();
-			doClose(_pDocTab->getBufferByIndex(i), currentView(), isSnapshotMode);
-			return true;
-		}
-	}
-	return true;
-} */
-
 bool Notepad_plus::fileCloseAllGiven(const std::vector<int> &krvecBufferIndexes)
 {
 	// First check if we need to save any file.
