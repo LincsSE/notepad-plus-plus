@@ -999,9 +999,9 @@ bool Notepad_plus::fileCloseAllSaved(bool doDeleteBackup)
 			// Do nothing
 		}
 
-		else if (!buf->isDirty())
+		else if (!buf->isDirty()) // checks if the document is saved.
 		{
-			doClose(_pDocTab->getBufferByIndex(i), currentView(), doDeleteBackup);
+			doClose(_pDocTab->getBufferByIndex(i), currentView(), doDeleteBackup); //Closes the document if it is saved.
 		}
 		
 	}
