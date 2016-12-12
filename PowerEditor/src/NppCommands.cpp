@@ -164,6 +164,14 @@ void Notepad_plus::command(int id)
 			break;
 		}
 
+		case IDM_FILE_CLOSEALLSAVED:
+		{
+			bool isSnapshotMode = NppParameters::getInstance()->getNppGUI().isSnapshotMode();
+			fileCloseAllSaved();
+			checkDocState();
+			break;
+		}
+
 		case IDM_FILE_CLOSEALL_BUT_CURRENT :
 			fileCloseAllButCurrent();
             checkDocState();
@@ -3026,6 +3034,7 @@ void Notepad_plus::command(int id)
 		{
 			case IDM_FILE_NEW :
 			case IDM_FILE_CLOSE :
+			case IDM_FILE_CLOSEALLSAVED :
 			case IDM_FILE_CLOSEALL :
 			case IDM_FILE_CLOSEALL_BUT_CURRENT :
 			case IDM_FILE_CLOSEALL_TOLEFT :
