@@ -988,7 +988,27 @@ bool Notepad_plus::fileCloseAll(bool doDeleteBackup, bool isSnapshotMode)
 	return true;
 }
 
-bool Notepad_plus::fileCloseAllSaved()
+bool Notepad_plus::fileCloseAllSaved(bool doDeleteBackup)
+{
+	for (int32_t i = static_cast<int32_t>(_pDocTab->nbItem()) - 1; i >= 0; i--)
+	{
+		BufferID id = _mainDocTab.getBufferByIndex(i);
+		Buffer * buf = MainFileManager->getBufferByID(id);
+		if (buf->isUntitled() && buf->docLength() == 0)
+		{
+			// Do nothing
+		}
+
+		else if (!buf->isDirty())
+		{
+			doClose(_pDocTab->getBufferByIndex(i), currentView(), doDeleteBackup);
+		}
+		
+	}
+	return true;
+}
+
+/*bool Notepad_plus::fileCloseAllSaved()
 {
 	for (size_t i = 0; i < _mainDocTab.nbItem(); ++i)
 	{
@@ -1008,7 +1028,7 @@ bool Notepad_plus::fileCloseAllSaved()
 		}
 	}
 	return true;
-}
+} */
 
 bool Notepad_plus::fileCloseAllGiven(const std::vector<int> &krvecBufferIndexes)
 {
