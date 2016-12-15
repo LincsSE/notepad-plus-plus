@@ -988,6 +988,26 @@ bool Notepad_plus::fileCloseAll(bool doDeleteBackup, bool isSnapshotMode)
 	return true;
 }
 
+bool Notepad_plus::fileCloseAllSaved(bool doDeleteBackup)
+{
+	for (int32_t i = static_cast<int32_t>(_pDocTab->nbItem()) - 1; i >= 0; i--)
+	{
+		BufferID id = _mainDocTab.getBufferByIndex(i);
+		Buffer * buf = MainFileManager->getBufferByID(id);
+		if (buf->isUntitled() && buf->docLength() == 0)
+		{
+			// Do nothing
+		}
+
+		else if (!buf->isDirty()) // checks if the document is saved.
+		{
+			doClose(_pDocTab->getBufferByIndex(i), currentView(), doDeleteBackup); //Closes the document if it is saved.
+		}
+		
+	}
+	return true;
+}
+
 bool Notepad_plus::fileCloseAllGiven(const std::vector<int> &krvecBufferIndexes)
 {
 	// First check if we need to save any file.
