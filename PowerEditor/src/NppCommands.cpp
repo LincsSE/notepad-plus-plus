@@ -166,7 +166,9 @@ void Notepad_plus::command(int id)
 
 		case IDM_FILE_CLOSEALLSAVED:
 		{
+			//Check if the GUI is in snapshot mode
 			bool isSnapshotMode = NppParameters::getInstance()->getNppGUI().isSnapshotMode();
+			//Close all saved tabs
 			fileCloseAllSaved(false);
 			checkDocState();
 			break;

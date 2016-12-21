@@ -990,15 +990,19 @@ bool Notepad_plus::fileCloseAll(bool doDeleteBackup, bool isSnapshotMode)
 
 bool Notepad_plus::fileCloseAllSaved(bool doDeleteBackup)
 {
+	//For each open tab
 	for (int32_t i = static_cast<int32_t>(_pDocTab->nbItem()) - 1; i >= 0; i--)
 	{
+		//Get the document ID at i
 		BufferID id = _mainDocTab.getBufferByIndex(i);
 		Buffer * buf = MainFileManager->getBufferByID(id);
+		//If the document has not been saved or is empty
 		if (buf->isUntitled() && buf->docLength() == 0)
 		{
 			// Do nothing
 		}
-
+		
+		
 		else if (!buf->isDirty()) // checks if the document is saved.
 		{
 			doClose(_pDocTab->getBufferByIndex(i), currentView(), doDeleteBackup); //Closes the document if it is saved.
